@@ -87,7 +87,7 @@ function loadCountries() {
 }
 function deleteland(id) {
 	
-    var uri = "/firstapp/restservices/countries/" + id;
+    var uri = "restservices/countries/" + id;
     $.ajax(uri, { 
         type: "delete", 
         beforeSend: function (xhr) {
