@@ -1,0 +1,24 @@
+<html>
+<script src="https://code.jquery.com/jquery-1.12.4.min.js" integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ=" crossorigin="anonymous"></script>
+<body>
+<form id="loginform">Username
+<input type="text" name="username">
+password
+<input type="text" name="password">
+<input type="button" value="login" id="login" />
+
+</form>
+</body>
+<script>$("#login").click(function(event) {
+	  var data = $("#loginform").serialize();
+
+	  $.post("restservices/authentication", data, function(response) {
+	    window.sessionStorage.setItem("sessionToken", response);
+
+	  }).fail(function(jqXHR, textStatus, errorThrown) {
+	    console.log(textStatus);
+	    console.log(errorThrown);
+	  });
+	});
+</script>
+</html>

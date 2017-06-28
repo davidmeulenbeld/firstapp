@@ -1,0 +1,116 @@
+<html>
+
+<script src="https://code.jquery.com/jquery-1.12.4.min.js" integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ=" crossorigin="anonymous"></script>
+<body onload="loadCountries()">
+<form id="newCustomerForm">
+  <input type="text" placeholder="code" id="code" name="code" />
+  <input type="text" placeholder="name" id="name" name="name" /> 
+  
+  <input type="text" placeholder="capital" id="capital" name="capital" />
+  <input type="text" placeholder="continent" id="continent" name="continent" />
+  <input type="text" placeholder="region" id="region" name="region" />
+  <input type="text" placeholder="surface" id="surface" name="surface" />
+  <input type="text" placeholder="population" id="population" name="population" />
+  <input type="text" placeholder="government" id="government" name="government" />
+  <input type="text" placeholder="latitude" id="latitude" name="latitude" />
+  <input type="text" placeholder="longitude" id="longitude" name="longitude" />	
+
+  <input type="button" id="post" value="Post!" />
+</form>
+
+<input type="text" id="myInput" onkeyup="myFunction()" placeholder="Search for names..">
+
+<table id="myTable">
+  <tr>
+<th>Land</th>
+<th>Hoofdstad</th>
+<th>regio</th>
+<th>oppervlakte</th>
+<th>Inwoners</th>
+<th>Optie</th>
+</tr>
+  
+</table>
+
+<script>
+function myFunction() {
+  // Declare variables 
+  var input, filter, table, tr, td, i;
+  input = document.getElementById("myInput");
+  filter = input.value.toUpperCase();
+  table = document.getElementById("myTable");
+  tr = table.getElementsByTagName("tr");
+
+  // Loop through all table rows, and hide those who don't match the search query
+  for (i = 0; i < tr.length; i++) {
+    td = tr[i].getElementsByTagName("td")[0];
+    if (td) {
+      if (td.innerHTML.toUpperCase().indexOf(filter) > -1) {
+        tr[i].style.display = "";
+      } else {
+        tr[i].style.display = "none";
+      }
+    } 
+  }
+}
+
+function loadCountries() {
+	var xhttp = new XMLHttpRequest();
+	  xhttp.onreadystatechange=function() {
+	    if (this.readyState == 4 && this.status == 200) {
+	    	obj = JSON.parse(this.responseText);
+	      	for(var i = 0; i < 200; i++) {
+	      		var table = document.getElementById("myTable");
+	      	    var row = table.insertRow(0);
+	      	    var cell1 = row.insertCell(0);
+	      	    var cell2 = row.insertCell(1);
+	      	  	var cell3 = row.insertCell(2);
+	      		var cell4 = row.insertCell(3);
+	      		var cell5 = row.insertCell(4);
+	      		var cell6 = row.insertCell(5);
+	      	    cell1.innerHTML = obj[i].name;
+	      	  	cell2.innerHTML = obj[i].capital;
+	      		cell3.innerHTML = obj[i].region;
+	      		cell4.innerHTML = obj[i].surface;
+	      		cell5.innerHTML = obj[i].population;
+	      		var cit = obj[i].code;
+	      		var tekst = "<button onclick='deleteland( \x22" + cit +"\x22)'>delete</button>";
+	      		console.log(tekst);
+	      		
+	      		cell6.innerHTML = tekst;
+	      	}
+			
+	    }
+	  };
+	  xhttp.open("GET", "../firstapp/restservices/countries/");
+	  xhttp.send();
+}
+function deleteland(id) {
+	
+    var uri = "/firstapp/restservices/countries/" + id;
+    $.ajax(uri, { 
+        type: "delete", 
+        beforeSend: function (xhr) {
+            var token = window.sessionStorage.getItem("sessionToken");
+            xhr.setRequestHeader( 'Authorization', 'Bearer ' + token);
+        },
+        success: function(response) {
+            $("#response").text("Customer deleted!");
+        },
+        error: function(response) {
+            $("#response").text("Could not delete customer!");
+        }
+    });
+}
+$("#post").click(function(response) {
+    var data = { "name": $("#name").val(), "code": $("#code").val(), "capital": $("#capital").val(), "continent": $("#continent").val(), "region": $("#region").val(), "surface": $("#surface").val(), "population": $("#population").val(), "government": $("#government").val(), "latitude": $("#latitude").val(), "longitude": $("#longitude").val() }
+    var JSONdata = JSON.stringify(data);
+    
+    $.post("/firstapp/restservices/countries", JSONdata, function(response) {
+        $("#response").text(JSON.stringify(response));
+    }); 
+});
+
+</script>
+</body>
+</html>

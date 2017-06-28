@@ -1,0 +1,22 @@
+body{
+	background-color: green;
+	color: #FFF;
+}
+#table {
+	
+	width: 100%;
+	overflow-y: auto;
+	_overflow: auto;
+	margin: 0 0 1em;
+
+}
+
+@media screen and (min-width: 780px) {
+    .test {
+        float:left;
+        margin-left: 200px;
+    }
+    #countrylist {
+    clear: both;
+    display:block;}
+}

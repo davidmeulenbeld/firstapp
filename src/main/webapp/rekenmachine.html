@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>JavaScript Rekenmachine</title>
+<link rel="stylesheet" type="text/css" href="theme.css">
+</head>
+<body><div id="frame">
+<div id="display">0</div>
+<button onclick="reken(7);" id="btn_7">7</button> <button onclick="reken(8);" id="btn_8">8</button> <button onclick="reken(9);" id="btn_9">9</button> <button onclick="reken('/');" id="btn_div">/</button>
+<button onclick="reken(4);" id="btn_4">4</button> <button onclick="reken(5);" id="btn_5">5</button> <button onclick="reken(6);" id="btn_6">6</button> <button onclick="reken('*');" id="btn_prod">*</button>
+<button onclick="reken(1);" id="btn_1">1</button> <button  onclick="reken(2);"id="btn_2">2</button> <button onclick="reken(3);" id="btn_3">3</button> <button onclick="reken('-');" id="btn_min">-</button>
+<button id="btn_clear" onclick="reken();">C</button> <button id="btn_0" onclick="reken(0);">0</button> <button onclick="reken('=');" id="btn_eq">=</button> <button onclick="reken('+');" id="btn_plus">+</button>
+</div></body>
+
+<script>
+var input = document.querySelector('#display');
+
+function reken(getal) {
+	var inputVala = input.innerHTML;
+	if (inputVala == 0) {
+		inputVala = "";
+	}
+	if (getal == "=") {
+		var uitkomst = eval(inputVala);
+		input.innerHTML = uitkomst;
+	}
+	else {
+	var inputValb = inputVala + getal;
+	var inputVal = input.innerHTML = inputValb;
+	}
+}
+</script>
