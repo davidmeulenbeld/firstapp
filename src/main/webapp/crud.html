@@ -82,7 +82,7 @@ function loadCountries() {
 			
 	    }
 	  };
-	  xhttp.open("GET", "../firstapp/restservices/countries/");
+	  xhttp.open("GET", "restservices/countries/");
 	  xhttp.send();
 }
 function deleteland(id) {
@@ -106,7 +106,7 @@ $("#post").click(function(response) {
     var data = { "name": $("#name").val(), "code": $("#code").val(), "capital": $("#capital").val(), "continent": $("#continent").val(), "region": $("#region").val(), "surface": $("#surface").val(), "population": $("#population").val(), "government": $("#government").val(), "latitude": $("#latitude").val(), "longitude": $("#longitude").val() }
     var JSONdata = JSON.stringify(data);
     
-    $.post("/firstapp/restservices/countries", JSONdata, function(response) {
+    $.post("restservices/countries", JSONdata, function(response) {
         $("#response").text(JSON.stringify(response));
     }); 
 });
