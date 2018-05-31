@@ -1,6 +1,7 @@
 body{
-	background-color: green;
-	color: #FFF;
+	background-color: #CCC;
+	color: #444;
+	font-family: Arial;
 }
 #table {
 	
@@ -10,7 +11,11 @@ body{
 	margin: 0 0 1em;
 
 }
-
+#table tr td {
+	text-align: center;
+	padding: 5px;
+	border-bottom: 1px solid #AAA;
+}
 @media screen and (min-width: 780px) {
     .test {
         float:left;
@@ -19,4 +24,12 @@ body{
     #countrylist {
     clear: both;
     display:block;}
+}
+table tr:hover {
+	background-color: #FFF;
+}
+h2 {
+	text-align: center;
+	padding-top: 20px;
+	padding-bottom: 20px;
 }

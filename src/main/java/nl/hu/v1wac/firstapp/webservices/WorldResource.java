@@ -35,7 +35,6 @@ public class WorldResource {
 			job.add("surface", o.getSurface());
 			job.add("government", o.getGovernment());
 			job.add("lat", o.getLatitude());
-			job.add("iso3", o.getIso3Code());
 			job.add("continent", o.getContinent());
 			job.add("region", o.getRegion());
 			job.add("population", o.getPopulation());
@@ -61,7 +60,6 @@ public class WorldResource {
 		job.add("surface", c.getSurface());
 		job.add("government", c.getGovernment());
 		job.add("lat", c.getLatitude());
-		job.add("iso3", c.getIso3Code());
 		job.add("continent", c.getContinent());
 		job.add("region", c.getRegion());
 		job.add("population", c.getPopulation());
@@ -84,7 +82,6 @@ public class WorldResource {
 			job.add("surface", o.getSurface());
 			job.add("government", o.getGovernment());
 			job.add("lat", o.getLatitude());
-			job.add("iso3", o.getIso3Code());
 			job.add("continent", o.getContinent());
 			job.add("region", o.getRegion());
 			job.add("population", o.getPopulation());
@@ -112,7 +109,6 @@ public class WorldResource {
 			job.add("surface", o.getSurface());
 			job.add("government", o.getGovernment());
 			job.add("lat", o.getLatitude());
-			job.add("iso3", o.getIso3Code());
 			job.add("continent", o.getContinent());
 			job.add("region", o.getRegion());
 			job.add("population", o.getPopulation());
@@ -142,7 +138,7 @@ public class WorldResource {
 		double latitude = Double.parseDouble(latitudestring);
 		String longitudestring = object.getString("longitude");
 		double longitude = Double.parseDouble(longitudestring);
-	    Country c = new Country(code, code, nm, capital, continent, region, surface, population, government, latitude, longitude);
+	    Country c = new Country(code, nm, capital, continent, region, surface, population, government, latitude, longitude);
 	    
 	    service.saveCountry(c);
 	    return nm;

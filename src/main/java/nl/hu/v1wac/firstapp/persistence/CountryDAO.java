@@ -19,7 +19,6 @@ public class CountryDAO extends BaseDAO {
 		while (dbResultSet.next()) {
 			String name = dbResultSet.getString("name");
 			String code = dbResultSet.getString("code");
-			String code2 = dbResultSet.getString("code2");
 			String continent = dbResultSet.getString("continent");
 			String region = dbResultSet.getString("region");
 			String capital = dbResultSet.getString("capital");
@@ -28,7 +27,7 @@ public class CountryDAO extends BaseDAO {
 			String government = dbResultSet.getString("governmentform");
 			double latitude = dbResultSet.getDouble("latitude");
 			double longitude = dbResultSet.getDouble("longitude");
-			Country newCountry = new Country(code, code2, name, capital, continent, region, surface, population, government, latitude, longitude);
+			Country newCountry = new Country(code, name, capital, continent, region, surface, population, government, latitude, longitude);
 			results.add(newCountry);
 		}
 	} catch (SQLException sqle) {sqle.printStackTrace(); }
